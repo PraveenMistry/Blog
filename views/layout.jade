@@ -1,0 +1,31 @@
+doctype html
+html
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+	body
+		nav.navbar.navbar-default.navbar-fixed-top
+			.container
+				.navbar-header
+					button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+					span.sr-only Toggle navigation
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+					a(href='/')
+						//img.log(src='/images/logo.png')
+				#navbar.collapse.navbar-collapse
+					ul.nav.navbar-nav.navbar.right
+						li(class=(title==='Node Blog' ? 'active' : ''))
+							a(href="/") Home
+						li(class=(title==='Add Post' ? 'active' : ''))
+							a(href="/posts/add") Add Post	
+						li(class=(title==='Add Category' ? 'active' : ''))
+							a(href="/categories/add") Add Category
+		block content
+			!=	messages()
+		footer
+			H4	NodeBlog &copy;	2016
+	script(src="/javascripts/jquery-1.11.3.js")
+	script(src="/javascripts/bootstrap.min.js")

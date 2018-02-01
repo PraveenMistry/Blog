@@ -1,0 +1,18 @@
+extends layout
+
+block content
+	.jumbotron
+		.container
+			if posts
+				each post, i in	posts
+					.post
+						h1=post.title
+						p.meta Posted in
+							a.bycategory(href="/categories/show/#{post.category}") #{post.category}
+							by #{post.author} on #{moment(post.date).format("DD-MM-YYYY")}
+						img.postimage(src="#{post.url}/#{post.fileName}")
+						!=truncateText(post.body,400)
+						a.btn.more.btn-info(href='/posts/show/#{post._id}') Read More
+			else
+				p.noposts There is no posts to dispaly
+

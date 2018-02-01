@@ -1,0 +1,11 @@
+extends layout
+
+block content
+	.jumbotron
+		.container
+			form(action='/categories/add', method='post')
+				.form-group
+					label(for='name') Category Name
+					input#name.form-control(type='text', name='name')
+				.form-group
+					button.btn.btn-primary.col-md-12(type='submit') Add Category

@@ -1,0 +1,45 @@
+extends layout
+
+block content
+	.jumbotron
+		.container
+			.post
+				h1=post.title
+				p.meta Posted in
+					a.bycategory(href="/categories/show/#{post.category}") #{post.category}
+					by #{post.author} on #{moment(post.date).format("DD-MM-YYYY")}
+				img.postimage(src="#{post.url}/#{post.fileName}")
+				!=post.body
+			br
+			hr
+			if post.comments
+				h3 Comment
+				each comment, i in post.comments
+					.comment
+						p.comment-name #{comment.name}
+						p.comment-body #{comment.body}
+				br
+				hr
+			h3	Add Comment
+			if errors
+				ul.errors
+					each error, i in errors
+						li.alert.alert-danger #{error.msg}
+
+			form.comment-form(method="post", action="/posts/add/comment")
+				input(name="postid",type="hidden" value="#{post._id}")
+				.form-group
+					label Name
+					input.form-control(type="text",name="name")
+				.form-group
+					label Email
+					input.form-control(type="email",name="email")
+				.form-group
+					label Name
+					textarea.form-control(name="body")
+				.form-group
+					button.btn.btn-primary(type='submit') Add Comment
+
+
+
+
